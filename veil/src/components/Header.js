@@ -1,46 +1,32 @@
 import React from 'react';
-import { styled } from '@mui/system';
 import { AppBar, Toolbar, IconButton, Box, Container } from '@mui/material';
 import { ShoppingCart } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import logo from '../logo.png'; // Replace with the path to your logo image
 
-const StyledLink = styled(Link)(({ theme }) => ({
-  textDecoration: 'none',
-  color: theme.palette.secondary.main,
-  marginRight: '1rem',
-}));
-
+const styledLink = "text-purple-900 hover:text-purple-300"
 const Header = () => {
     return (
         <AppBar position="static">
             <Container maxWidth="lg">
-                <Toolbar sx={{ justifyContent: 'space-between' }}>
+                <Toolbar className="flex justify-between">
                     <Link to="/">
-                    <img src={logo} alt="VEIL Logo" style={{ height: 40 }} />
+                        <img src={logo} alt="VEIL Logo" style={{ height: 40 }} />
                     </Link>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                         <nav>
-                            <ul style={{ display: 'flex', alignItems: 'center', listStyleType: 'none', padding: 0, marginLeft: '2rem' }}>
+                            <ul className="flex space-x-4">
                                 <li>
-                                    <StyledLink to="/">
-                                        Home
-                                    </StyledLink>
+                                    <Link to="/" className={styledLink}>Home</Link>
                                 </li>
                                 <li>
-                                    <StyledLink to="/products">
-                                        Products
-                                    </StyledLink>
+                                    <Link to="/products" className={styledLink}>Products</Link>
                                 </li>
                                 <li>
-                                    <StyledLink to="/about">
-                                        About
-                                    </StyledLink>
+                                    <Link to="/about" className={styledLink}>About</Link>
                                 </li>
                                 <li>
-                                    <StyledLink to="/contact">
-                                        Contact
-                                    </StyledLink>
+                                    <Link to="/contact" className={styledLink}>Contact</Link>
                                 </li>
                             </ul>
                         </nav>
