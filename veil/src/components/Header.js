@@ -6,9 +6,9 @@ import { Link } from 'react-router-dom';
 import logo from '../logo.png'; // Replace with the path to your logo image
 
 const StyledLink = styled(Link)(({ theme }) => ({
-    textDecoration: 'none',
-    color: theme.palette.secondary.main,
-    marginRight: '1rem',
+  textDecoration: 'none',
+  color: theme.palette.secondary.main,
+  marginRight: '1rem',
 }));
 
 const Header = () => {
@@ -17,11 +17,11 @@ const Header = () => {
             <Container maxWidth="lg">
                 <Toolbar sx={{ justifyContent: 'space-between' }}>
                     <Link to="/">
-                        <img src={logo} alt="VEIL Logo" sx={{ height: '10rem' }} />
+                    <img src={logo} alt="VEIL Logo" style={{ height: 40 }} />
                     </Link>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                         <nav>
-                        <ul sx={{ display: 'flex', alignItems: 'center', listStyleType: 'none', p: 0, ml: '2rem' }}>
+                            <ul style={{ display: 'flex', alignItems: 'center', listStyleType: 'none', padding: 0, marginLeft: '2rem' }}>
                                 <li>
                                     <StyledLink to="/">
                                         Home
