@@ -1,9 +1,14 @@
+import { useParams } from 'react-router-dom';
 
 const ProductDetails = () => {
+  const { id } = useParams(); // This will get the ID from the URL
+
+  // Fetch product data from your backend using the ID
+  // ...
+
   return (
     <div>
-      <h2>Welcome to Veil</h2>
-      <p>Your one-stop-shop for stylish and affordable evening gowns.</p>
+      {/* Display product details here */}
     </div>
   );
 };
