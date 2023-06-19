@@ -40,7 +40,7 @@ def update_shopify_inventory(product_id, out_of_stock_sizes, color):
         variant_size = variant.option2 if color else variant.option1
         if color != "" and variant_color != color: continue
         if variant_color == color and variant_size in out_of_stock_sizes:
-            print("Out of stock: ", color, variant_color, variant_size, inventory_item_id, out_of_stock_sizes)
+            print("Out of stock: ", color, variant_size, inventory_item_id, out_of_stock_sizes)
             new_level = 0
             inventory_level.set(location_id, inventory_item_id, new_level)
         elif color == "" and variant_size in out_of_stock_sizes:
