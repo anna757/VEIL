@@ -35,21 +35,21 @@ def update_shopify_inventory(product_id, out_of_stock_sizes, color):
         # Get the current inventory level for the variant
         inventory_item_id = variant.inventory_item_id
         inventory_level = shopify.InventoryLevel.find(inventory_item_ids=inventory_item_id, location_ids=location_id)[0]
-        
+
         variant_color = variant.option1
         variant_size = variant.option2 if color else variant.option1
-
-        
-        if color and variant_color == color and variant_size in out_of_stock_sizes:
-            print("Out of stock: ", color, variant_size)
+        if color != "" and variant_color != color: continue
+        if variant_color == color and variant_size in out_of_stock_sizes:
+            print("Out of stock: ", color, variant_color, variant_size, inventory_item_id, out_of_stock_sizes)
             new_level = 0
-        elif not color and variant_size in out_of_stock_sizes:
+            inventory_level.set(location_id, inventory_item_id, new_level)
+        elif color == "" and variant_size in out_of_stock_sizes:
             print("Out of stock: ", variant_size)
             new_level = 0
-        else: new_level = 5
+            inventory_level.set(location_id, inventory_item_id, new_level)
+            print(variant.title, new_level)
+        else: inventory_level.set(location_id, inventory_item_id, 5)
         # Update the inventory level
-        inventory_level.set(location_id, inventory_item_id, new_level)
-
 
 """
 Scrapes a Trendyol product page to find available size options.
