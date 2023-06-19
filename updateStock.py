@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import shopify
 import time
+
 """
 Update the inventory level of a given product's variants on Shopify based on the available sizes provided.
 
@@ -38,13 +39,14 @@ def update_shopify_inventory(product_id, out_of_stock_sizes, color):
         variant_color = variant.option1
         variant_size = variant.option2 if color else variant.option1
 
-        new_level = 10
+        
         if color and variant_color == color and variant_size in out_of_stock_sizes:
             print("Out of stock: ", color, variant_size)
             new_level = 0
         elif not color and variant_size in out_of_stock_sizes:
             print("Out of stock: ", variant_size)
             new_level = 0
+        else: new_level = 10
         # Update the inventory level
         inventory_level.set(location_id, inventory_item_id, new_level)
 
@@ -100,10 +102,6 @@ def main():
     # For each product, scrape the Trendyol page and update the Shopify inventory
     for product in products:
         out_of_stock_sizes = scrape_trendyol_page(product["url"])
-        #print(product, out_of_stock_sizes)
         update_shopify_inventory(product["product_id"], out_of_stock_sizes, product["color"])
-        
-        
-# Test the function with one of your product URLs
-
+           
 main()
