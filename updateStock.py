@@ -47,7 +47,6 @@ def update_shopify_inventory(product_id, out_of_stock_sizes, color):
             print("Out of stock: ", variant_size)
             new_level = 0
             inventory_level.set(location_id, inventory_item_id, new_level)
-            print(variant.title, new_level)
         else: inventory_level.set(location_id, inventory_item_id, 5)
         # Update the inventory level
 
